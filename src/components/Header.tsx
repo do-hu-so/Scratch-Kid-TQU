@@ -9,7 +9,7 @@ const Header = () => {
   const navItems = [
     { label: "Trang chủ", href: "/", icon: Book },
     { label: "Sản phẩm", href: "/tat-ca-san-pham", icon: GraduationCap },
-    { label: "Giới thiệu", href: "#teachers", icon: GraduationCap },
+    { label: "Giới thiệu", href: "/gioi-thieu", icon: GraduationCap },
     { label: "Liên hệ", href: "#contact", icon: MessageCircle },
   ];
 

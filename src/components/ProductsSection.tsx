@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Download, Star, Play } from "lucide-react";
+import { toast } from "sonner";
 import imgProduct1 from "@/assets/lop3.png";
 import imgProduct2 from "@/assets/lop4.png";
 import imgProduct3 from "@/assets/lop5.png";
@@ -59,6 +60,14 @@ const products = [
 ];
 
 const ProductsSection = () => {
+  const handleBuyClick = () => {
+    toast.info("Tính năng này chưa được hỗ trợ, vui lòng đăng nhập");
+  };
+
+  const handleDownloadClick = () => {
+    toast.info("vui lòng thanh toán trước khi tải về");
+  };
+
   return (
     <section id="products" className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -122,11 +131,11 @@ const ProductsSection = () => {
                   </div>
 
                   <div className="flex gap-2">
-                    <Button className="flex-1" size="sm">
+                    <Button className="flex-1" size="sm" onClick={handleBuyClick}>
                       <ShoppingCart className="w-4 h-4" />
                       Mua ngay
                     </Button>
-                    <Button variant="outline" size="icon">
+                    <Button variant="outline" size="icon" onClick={handleDownloadClick}>
                       <Download className="w-4 h-4" />
                     </Button>
                   </div>
