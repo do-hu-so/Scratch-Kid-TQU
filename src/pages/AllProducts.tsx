@@ -27,11 +27,12 @@ const AllProducts = () => {
 
     // --- Constants ---
     const typeLabels: Record<ProductType, string> = {
-        book: "Sách tài liệu",
+        book: "Tài liệu",
         video: "Video khóa học",
         code: "Source Code",
         ppt: "PowerPoint",
-        combo: "Combo tiết kiệm",
+        video_demo: "Video ứng dụng",
+        robotics: "Robotics",
     };
 
     const gradeLabels: Record<GradeLevel, string> = {

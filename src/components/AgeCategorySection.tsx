@@ -108,7 +108,7 @@ const AgeCategorySection = () => {
                       <DropdownMenuItem asChild>
                         <Link to={`/tai-nguyen/${getCategorySlug(category.age)}/books`} className="cursor-pointer w-full flex items-center">
                           <Book className="w-4 h-4 mr-2" />
-                          Sách tài liệu
+                          Tài liệu
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>

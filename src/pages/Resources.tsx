@@ -195,7 +195,7 @@ const Resources = () => {
                         <div className="bg-white rounded-xl shadow-sm border p-4 sticky top-24">
                             <h3 className="font-bold text-lg mb-4 px-2">Danh mục</h3>
                             <div className="flex flex-col gap-2">
-                                {(Object.keys(typeLabels) as ResourceType[]).map((t) => (
+                                {(Object.keys(typeLabels) as ResourceType[]).filter(k => !['video_demo', 'robotics'].includes(k)).map((t) => (
                                     <Button
                                         key={t}
                                         variant={activeType === t ? "default" : "ghost"}

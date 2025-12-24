@@ -1,5 +1,5 @@
 
-export type ResourceType = 'books' | 'code' | 'videos' | 'ppt';
+export type ResourceType = 'books' | 'code' | 'videos' | 'ppt' | 'video_demo' | 'robotics';
 export type AgeCategory = '6-8' | '9-11' | '12-14' | 'teacher';
 export type GradeLevel = '3' | '4' | '5';
 
@@ -57,6 +57,11 @@ const VIDEO_5 = "https://drive.google.com/file/d/1Oq0OMLe2o-CpED1KXS-U6Y6awPFj_t
 const PPT_3 = "https://docs.google.com/presentation/d/1qZHTknVZAhRJ4JSzw1CejbNSwpIkM-Og/edit?usp=sharing&ouid=110035452335957165964&rtpof=true&sd=true"
 const PPT_4 = "https://docs.google.com/presentation/d/1hFu5BOjfeny5-nw7g4E1h74GN7eay2m-/edit?usp=sharing&ouid=110035452335957165964&rtpof=true&sd=true"
 const PPT_5 = "https://docs.google.com/presentation/d/1kqvXgZreINwi8vOgic3qw0DJu0vRUIuQ/edit?usp=sharing&ouid=110035452335957165964&rtpof=true&sd=true"
+const PROJECT_3 = CODE_3; // Alias for legacy code ref
+//============================robotics================
+const ROBOTICS = "https://drive.google.com/file/d/1m_os8J4bpqNT6QKVn-0IMYbG8jGuWhg3/view?usp=sharing"
+const VIDEO_UNG_DUNG = "https://drive.google.com/file/d/1prGjJ7UJDhrJ5Fo3nXT5ORDelm7trZFW/view?usp=sharing"
+
 // Helper Interface
 interface ItemConfig { title: string; thumb: string; preview: string; download: string; description?: string; }
 const item = (title: string, thumb: string, preview: string, download: string, description: string = ""): ItemConfig => ({ title, thumb, preview, download, description });
@@ -65,242 +70,133 @@ const item = (title: string, thumb: string, preview: string, download: string, d
 // DANH SÁCH CHI TIẾT (SỬA NỘI DUNG TỪNG BÀI TẠI ĐÂY)
 // =============================================================================
 
+const GRADE_3_DATA = {
+    books: [
+        item("Khởi động tư duy", THUMB_BOOK3, BOOK_3, LINK_DL, "Tài liệu chuyên biệt dành cho khung chương trình Lớp 3 - Khởi động tư duy"),
+    ],
+    code: [
+        item("Code mẫu Bài 1 - Di chuyển", THUMB_CODE, PROJECT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Code mẫu Bài 2 - Nhảy múa", THUMB_CODE, PROJECT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Code mẫu Bài 3 - Âm nhạc", THUMB_CODE, PROJECT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Code mẫu Bài 4 - Vẽ hình", THUMB_CODE, PROJECT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Code mẫu Bài 5 - Kể chuyện", THUMB_CODE, PROJECT_3, LINK_DL, "Khởi động tư duy lập trình"),
+    ],
+    videos: [
+        item("Video Kết quả lớp 3 - Bài 1", THUMB_VID, VIDEO_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Video Kết quả lớp 3 - Bài 2", THUMB_VID, VIDEO_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Video Kết quả lớp 3 - Bài 3", THUMB_VID, VIDEO_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Video Kết quả lớp 3 - Bài 4", THUMB_VID, VIDEO_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Video Kết quả lớp 3 - Bài 5", THUMB_VID, VIDEO_3, LINK_DL, "Khởi động tư duy lập trình"),
+    ],
+    ppt: [
+        item("Slide Bài giảng lớp 3 - Bài 1", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Slide Bài giảng lớp 3 - Bài 2", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Slide Bài giảng lớp 3 - Bài 3", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Slide Bài giảng lớp 3 - Bài 4", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Slide Bài giảng lớp 3 - Bài 5", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Slide Bài giảng lớp 3 - Bài 6", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Slide Bài giảng lớp 3 - Bài 7", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Slide Bài giảng lớp 3 - Bài 8", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Slide Bài giảng lớp 3 - Bài 9", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Slide Bài giảng lớp 3 - Bài 10", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Slide Bài giảng lớp 3 - Bài 11", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Slide Bài giảng lớp 3 - Bài 12", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Slide Bài giảng lớp 3 - Bài 13", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Slide Bài giảng lớp 3 - Bài 14", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
+        item("Slide Bài giảng lớp 3 - Bài 15", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
+    ]
+};
+
+const GRADE_4_DATA = {
+    books: [
+        item("Sáng tạo cùng Scratch", THUMB_BOOK4, BOOK_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+    ],
+    code: [
+        item("Code mẫu lớp 4 - bài 1", THUMB_CODE, CODE_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Code mẫu lớp 4 - bài 2", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Code mẫu lớp 4 - bài 3", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Code mẫu lớp 4 - bài 4", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Code mẫu lớp 4 - bài 5", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
+    ],
+    videos: [
+        item("Video Kết quả lớp 4 - Bài 1", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Video Kết quả lớp 4 - Bài 2", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Video Kết quả lớp 4 - Bài 3", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Video Kết quả lớp 4 - Bài 4", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Video Kết quả lớp 4 - Bài 5", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+    ],
+    ppt: [
+        item("Slide Bài giảng lớp 4 - Bài 1", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Slide Bài giảng lớp 4 - Bài 2", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Slide Bài giảng lớp 4 - Bài 3", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Slide Bài giảng lớp 4 - Bài 4", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Slide Bài giảng lớp 4 - Bài 5", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Slide Bài giảng lớp 4 - Bài 6", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Slide Bài giảng lớp 4 - Bài 7", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Slide Bài giảng lớp 4 - Bài 8", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Slide Bài giảng lớp 4 - Bài 9", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Slide Bài giảng lớp 4 - Bài 10", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Slide Bài giảng lớp 4 - Bài 11", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Slide Bài giảng lớp 4 - Bài 12", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Slide Bài giảng lớp 4 - Bài 13", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Slide Bài giảng lớp 4 - Bài 14", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+        item("Slide Bài giảng lớp 4 - Bài 15", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
+    ]
+};
+
+const GRADE_5_DATA = {
+    books: [
+        item("Chiến binh Scratch", THUMB_BOOK5, BOOK_5, LINK_DL, "Dự án STEM ứng dụng"),
+    ],
+    code: [
+        item("Code mẫu lớp 5 - bài 1", THUMB_CODE, CODE_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Code mẫu lớp 5 - bài 2", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Code mẫu lớp 5 - bài 3", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Code mẫu lớp 5 - bài 4", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Code mẫu lớp 5 - bài 5", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Code mẫu lớp 5 - bài 6", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
+    ],
+    videos: [
+        item("Video Kết quả - Bài 1", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Video Kết quả - Bài 2", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Video Kết quả - Bài 3", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Video Kết quả - Bài 4", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Video Kết quả - Bài 5", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
+    ],
+    ppt: [
+        item("Slide Bài giảng lớp 5 - Bài 1", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Slide Bài giảng lớp 5 - Bài 2", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Slide Bài giảng lớp 5 - Bài 3", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Slide Bài giảng lớp 5 - Bài 4", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Slide Bài giảng lớp 5 - Bài 5", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Slide Bài giảng lớp 5 - Bài 6", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Slide Bài giảng lớp 5 - Bài 7", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Slide Bài giảng lớp 5 - Bài 8", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Slide Bài giảng lớp 5 - Bài 9", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Slide Bài giảng lớp 5 - Bài 10", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Slide Bài giảng lớp 5 - Bài 11", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Slide Bài giảng lớp 5 - Bài 12", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Slide Bài giảng lớp 5 - Bài 13", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Slide Bài giảng lớp 5 - Bài 14", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
+        item("Slide Bài giảng lớp 5 - Bài 15", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
+    ]
+};
+
+const SPECIAL_DATA = {
+    video_demo: [
+        item("Video Ứng dụng Scratch", THUMB_VID, VIDEO_UNG_DUNG, LINK_DL, "Video ứng dụng thực tế"),
+    ],
+    robotics: [
+        item("Dự án Robotics", THUMB_CODE, ROBOTICS, LINK_DL, "Lập trình Robotics cơ bản"),
+    ]
+};
+
 const DATA = {
-    '6-8': { // LỚP 3
-        books: [
-            item("Làm quen với Scratch", THUMB_BOOK3, BOOK_3, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Làm quen với Scratch - Bài 2", THUMB_BOOK3, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Làm quen với Scratch - Bài 3", THUMB_BOOK3, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Làm quen với Scratch - Bài 4", THUMB_BOOK3, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Làm quen với Scratch - Bài 5", THUMB_BOOK3, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Làm quen với Scratch - Bài 6", THUMB_BOOK3, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Làm quen với Scratch - Bài 7", THUMB_BOOK3, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Làm quen với Scratch - Bài 8", THUMB_BOOK3, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Làm quen với Scratch - Bài 9", THUMB_BOOK3, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Làm quen với Scratch - Bài 10", THUMB_BOOK3, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Làm quen với Scratch - Bài 11", THUMB_BOOK3, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Làm quen với Scratch - Bài 12", THUMB_BOOK3, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Làm quen với Scratch - Bài 13", THUMB_BOOK3, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Làm quen với Scratch - Bài 14", THUMB_BOOK3, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Làm quen với Scratch - Bài 15", THUMB_BOOK3, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-        ],
-        code: [
-            item("Code mẫu Scratch lớp 3 - bài 1", THUMB_CODE, CODE_3, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Code mẫu Scratch lớp 3 - bài 2", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Code mẫu Scratch lớp 3 - bài 3", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Code mẫu Scratch lớp 3 - bài 4", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Code mẫu Scratch lớp 3 - bài 5", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Code mẫu - Bài 6", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Code mẫu - Bài 7", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Code mẫu - Bài 8", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Code mẫu - Bài 9", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Code mẫu - Bài 10", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Code mẫu - Bài 11", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Code mẫu - Bài 12", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Code mẫu - Bài 13", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Code mẫu - Bài 14", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Code mẫu - Bài 15", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Khởi động tư duy lập trình"),
-        ],
-        videos: [
-            item("Video Demo lớp 3 - bài 1", THUMB_VID, VIDEO_3, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Video Demo lớp 3 - bài 2", THUMB_VID, LINK_PV_VID, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Video Demo lớp 3 - bài 3", THUMB_VID, LINK_PV_VID, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Video Demo lớp 3 - bài 4", THUMB_VID, LINK_PV_VID, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Video Demo lớp 3 - bài 5", THUMB_VID, LINK_PV_VID, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Video Demo - Bài 6", THUMB_VID, LINK_PV_VID, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Video Demo - Bài 7", THUMB_VID, LINK_PV_VID, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Video Demo - Bài 8", THUMB_VID, LINK_PV_VID, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Video Demo - Bài 9", THUMB_VID, LINK_PV_VID, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Video Demo - Bài 10", THUMB_VID, LINK_PV_VID, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Video Demo - Bài 11", THUMB_VID, LINK_PV_VID, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Video Demo - Bài 12", THUMB_VID, LINK_PV_VID, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Video Demo - Bài 13", THUMB_VID, LINK_PV_VID, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Video Demo - Bài 14", THUMB_VID, LINK_PV_VID, LINK_DL, "Khởi động tư duy lập trình"),
-            // item("Video Demo - Bài 15", THUMB_VID, LINK_PV_VID, LINK_DL, "Khởi động tư duy lập trình"),
-        ],
-        ppt: [
-            item("Slide Bài giảng - Bài 1", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Slide Bài giảng - Bài 2", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Slide Bài giảng - Bài 3", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Slide Bài giảng - Bài 4", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Slide Bài giảng - Bài 5", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Slide Bài giảng - Bài 6", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Slide Bài giảng - Bài 7", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Slide Bài giảng - Bài 8", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Slide Bài giảng - Bài 9", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Slide Bài giảng - Bài 10", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Slide Bài giảng - Bài 11", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Slide Bài giảng - Bài 12", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Slide Bài giảng - Bài 13", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Slide Bài giảng - Bài 14", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
-            item("Slide Bài giảng - Bài 15", THUMB_BOOK3, PPT_3, LINK_DL, "Khởi động tư duy lập trình"),
-        ],
-        //code2: Array(15).fill(null).map((_, i) => item(`Code mẫu - Bài ${i + 1}`, THUMB_CODE, LINK_PV_IMG, LINK_DL)),
-        //videos: Array(15).fill(null).map((_, i) => item(`Video Demo - Bài ${i + 1}`, THUMB_VID, LINK_PV_VID, LINK_DL)),
-        //ppt: Array(4).fill(null).map((_, i) => item(`Slide Bài giảng - Bài ${i + 1}`, THUMB_BOOK3, LINK_PV_PPT, LINK_DL)),
-    },
-    '9-11': { // LỚP 4
-        books: [
-            item("Sáng tạo cùng Scratch", THUMB_BOOK4, BOOK_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Sáng tạo cùng Scratch - Bài 2", THUMB_BOOK4, BOOK_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Sáng tạo cùng Scratch - Bài 3", THUMB_BOOK4, BOOK_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Sáng tạo cùng Scratch - Bài 4", THUMB_BOOK4, BOOK_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Sáng tạo cùng Scratch - Bài 5", THUMB_BOOK4, BOOK_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Sáng tạo cùng Scratch - Bài 6", THUMB_BOOK4, BOOK_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Sáng tạo cùng Scratch - Bài 7", THUMB_BOOK4, BOOK_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Sáng tạo cùng Scratch - Bài 8", THUMB_BOOK4, BOOK_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Sáng tạo cùng Scratch - Bài 9", THUMB_BOOK4, BOOK_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Sáng tạo cùng Scratch - Bài 10", THUMB_BOOK4, BOOK_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Sáng tạo cùng Scratch - Bài 11", THUMB_BOOK4, BOOK_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Sáng tạo cùng Scratch - Bài 12", THUMB_BOOK4, BOOK_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Sáng tạo cùng Scratch - Bài 13", THUMB_BOOK4, BOOK_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Sáng tạo cùng Scratch - Bài 14", THUMB_BOOK4, BOOK_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Sáng tạo cùng Scratch - Bài 15", THUMB_BOOK4, BOOK_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-        ],
-        code: [
-            item("Code mẫu lớp 4 - bài 1", THUMB_CODE, CODE_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Code mẫu lớp 4 - bài 2", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Code mẫu lớp 4 - bài 3", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Code mẫu lớp 4 - bài 4", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Code mẫu lớp 4 - bài 5", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Code mẫu - Bài 6", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Code mẫu - Bài 7", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Code mẫu - Bài 8", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Code mẫu - Bài 9", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Code mẫu - Bài 10", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Code mẫu - Bài 11", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Code mẫu - Bài 12", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Code mẫu - Bài 13", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Code mẫu - Bài 14", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Code mẫu - Bài 15", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Phát triển kỹ năng lập trình"),
-        ],
-        videos: [
-            item("Video Demo lớp 4 - bài 1", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Video Demo lớp 4 - bài 2", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Video Demo lớp 4 - bài 3", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Video Demo lớp 4 - bài 4", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Video Demo lớp 4 - bài 5", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Video Demo - Bài 6", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Video Demo - Bài 7", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Video Demo - Bài 8", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Video Demo - Bài 9", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Video Demo - Bài 10", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Video Demo - Bài 11", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Video Demo - Bài 12", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Video Demo - Bài 13", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Video Demo - Bài 14", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            // item("Video Demo - Bài 15", THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-        ],
-        ppt: [
-            item("Slide Bài giảng - Bài 1", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Slide Bài giảng - Bài 2", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Slide Bài giảng - Bài 3", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Slide Bài giảng - Bài 4", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Slide Bài giảng - Bài 5", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Slide Bài giảng - Bài 6", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Slide Bài giảng - Bài 7", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Slide Bài giảng - Bài 8", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Slide Bài giảng - Bài 9", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Slide Bài giảng - Bài 10", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Slide Bài giảng - Bài 11", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Slide Bài giảng - Bài 12", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Slide Bài giảng - Bài 13", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Slide Bài giảng - Bài 14", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-            item("Slide Bài giảng - Bài 15", THUMB_BOOK4, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình"),
-        ],
-    },
-    '12-14': { // LỚP 5
-        books: [
-            item("DỰ ÁN SÁNG TẠO & CÔNG NGHỆ ỨNG DỤNG ", THUMB_BOOK5, BOOK_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("DỰ ÁN SÁNG TẠO & CÔNG NGHỆ ỨNG DỤNG - Bài 2", THUMB_BOOK5, BOOK_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("DỰ ÁN SÁNG TẠO & CÔNG NGHỆ ỨNG DỤNG - Bài 3", THUMB_BOOK5, BOOK_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("DỰ ÁN SÁNG TẠO & CÔNG NGHỆ ỨNG DỤNG - Bài 4", THUMB_BOOK5, BOOK_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("DỰ ÁN SÁNG TẠO & CÔNG NGHỆ ỨNG DỤNG - Bài 5", THUMB_BOOK5, BOOK_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("DỰ ÁN SÁNG TẠO & CÔNG NGHỆ ỨNG DỤNG - Bài 6", THUMB_BOOK5, BOOK_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("DỰ ÁN SÁNG TẠO & CÔNG NGHỆ ỨNG DỤNG - Bài 7", THUMB_BOOK5, BOOK_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("DỰ ÁN SÁNG TẠO & CÔNG NGHỆ ỨNG DỤNG - Bài 8", THUMB_BOOK5, BOOK_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("DỰ ÁN SÁNG TẠO & CÔNG NGHỆ ỨNG DỤNG - Bài 9", THUMB_BOOK5, BOOK_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("DỰ ÁN SÁNG TẠO & CÔNG NGHỆ ỨNG DỤNG - Bài 10", THUMB_BOOK5, BOOK_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("DỰ ÁN SÁNG TẠO & CÔNG NGHỆ ỨNG DỤNG - Bài 11", THUMB_BOOK5, BOOK_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("DỰ ÁN SÁNG TẠO & CÔNG NGHỆ ỨNG DỤNG - Bài 12", THUMB_BOOK5, BOOK_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("DỰ ÁN SÁNG TẠO & CÔNG NGHỆ ỨNG DỤNG - Bài 13", THUMB_BOOK5, BOOK_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("DỰ ÁN SÁNG TẠO & CÔNG NGHỆ ỨNG DỤNG - Bài 14", THUMB_BOOK5, BOOK_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("DỰ ÁN SÁNG TẠO & CÔNG NGHỆ ỨNG DỤNG - Bài 15", THUMB_BOOK5, BOOK_5, LINK_DL, "Dự án STEM ứng dụng"),
-        ],
-        code: [
-            item("Code mẫu lớp 5 - bài 1", THUMB_CODE, CODE_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Code mẫu lớp 5 - bài 2", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Code mẫu lớp 5 - bài 3", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Code mẫu lớp 5 - bài 4", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Code mẫu lớp 5 - bài 5", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Code mẫu - Bài 6", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Code mẫu - Bài 7", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Code mẫu - Bài 8", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Code mẫu - Bài 9", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Code mẫu - Bài 10", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Code mẫu - Bài 11", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Code mẫu - Bài 12", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Code mẫu - Bài 13", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Code mẫu - Bài 14", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Code mẫu - Bài 15", THUMB_CODE, LINK_PV_IMG, LINK_DL, "Dự án STEM ứng dụng"),
-        ],
-        videos: [
-            item("Video Demo lớp 5 - bài 1", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Video Demo lớp 5 - bài 2", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Video Demo lớp 5 - bài 3", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Video Demo lớp 5 - bài 4", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Video Demo lớp 5 - bài 5", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Video Demo - Bài 6", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Video Demo - Bài 7", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Video Demo - Bài 8", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Video Demo - Bài 9", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Video Demo - Bài 10", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Video Demo - Bài 11", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Video Demo - Bài 12", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Video Demo - Bài 13", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Video Demo - Bài 14", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
-            // item("Video Demo - Bài 15", THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng"),
-        ],
-        ppt: [
-            item("Slide Bài giảng - Bài 1", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Slide Bài giảng - Bài 2", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Slide Bài giảng - Bài 3", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Slide Bài giảng - Bài 4", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Slide Bài giảng - Bài 5", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Slide Bài giảng - Bài 6", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Slide Bài giảng - Bài 7", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Slide Bài giảng - Bài 8", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Slide Bài giảng - Bài 9", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Slide Bài giảng - Bài 10", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Slide Bài giảng - Bài 11", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Slide Bài giảng - Bài 12", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Slide Bài giảng - Bài 13", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Slide Bài giảng - Bài 14", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
-            item("Slide Bài giảng - Bài 15", THUMB_BOOK5, PPT_5, LINK_DL, "Dự án STEM ứng dụng"),
-        ],
-    },
-    'teacher': {
-        books: {
-            '3': [],
-            '4': [],
-            '5': [],
-        },
-        code: {
-            '3': [],
-            '4': [],
-            '5': [],
-        },
-        videos: {
-            '3': [],
-            '4': [],
-            '5': [],
-        },
-        ppt: {
-            '3': [],
-            '4': [],
-            '5': [],
-        }
-    }
+    '6-8': GRADE_3_DATA,
+    '9-11': GRADE_4_DATA,
+    '12-14': GRADE_5_DATA,
+    'teacher': {}, // Will be populated dynamically below
+    'others': SPECIAL_DATA
 };
 
 // =============================================================================
@@ -310,42 +206,52 @@ const DATA = {
 export const resources: ResourceItem[] = [];
 
 const add = (cat: AgeCategory, type: ResourceType, cfg: ItemConfig, idx: number, gr?: GradeLevel) => {
+    let grade: GradeLevel | undefined = gr;
+    if (!grade) {
+        if (cat === '6-8') grade = '3';
+        else if (cat === '9-11') grade = '4';
+        else if (cat === '12-14') grade = '5';
+        else if (cat === 'teacher' || cat === 'others') grade = '3';
+    }
+
     resources.push({
-        id: `${cat}-${type}-${gr || 'g'}-${idx}`,
+        id: `${cat}-${type}-${idx}-${grade || '3'}`, // Added grade to ID to stay unique
         title: cfg.title,
         description: cfg.description || `Tài liệu ${cfg.title}`,
         thumbnail: cfg.thumb,
         previewUrl: cfg.preview,
         downloadUrl: cfg.download,
-        type, category: cat, grade: gr
+        type: type,
+        category: cat,
+        grade: grade,
     });
 }
 
-// Build Student
-(['6-8', '9-11', '12-14'] as AgeCategory[]).forEach(cat => {
+// Build standard categories
+(['6-8', '9-11', '12-14', 'others'] as AgeCategory[]).forEach(cat => {
     const d = DATA[cat as keyof typeof DATA];
     if (d) {
-        (['books', 'code', 'videos', 'ppt'] as ResourceType[]).forEach(t => {
+        (['books', 'code', 'videos', 'ppt', 'video_demo', 'robotics'] as ResourceType[]).forEach(t => {
             // @ts-ignore
-            d[t].forEach((item, i) => add(cat, t, item, i));
+            if (d[t]) d[t].forEach((item, i) => add(cat, t, item, i));
         });
     }
 });
 
-// Build Teacher
-(['books', 'code', 'videos', 'ppt'] as ResourceType[]).forEach(t => {
+// Build Teacher category explicitly to preserve grades
+(['books', 'code', 'videos', 'ppt'] as ResourceType[]).forEach(type => {
     // @ts-ignore
-    const d = DATA['teacher'][t];
-    (['3', '4', '5'] as GradeLevel[]).forEach(g => {
-        // @ts-ignore
-        if (d[g]) d[g].forEach((item, i) => add('teacher', t, item, i, g));
-    });
+    if (GRADE_3_DATA[type]) GRADE_3_DATA[type].forEach((item, i) => add('teacher', type, item, i, '3'));
+    // @ts-ignore
+    if (GRADE_4_DATA[type]) GRADE_4_DATA[type].forEach((item, i) => add('teacher', type, item, i, '4'));
+    // @ts-ignore
+    if (GRADE_5_DATA[type]) GRADE_5_DATA[type].forEach((item, i) => add('teacher', type, item, i, '5'));
 });
-
 
 export const categoryLabels: Record<string, string> = {
     '6-8': 'Lớp 3', '9-11': 'Lớp 4', '12-14': 'Lớp 5', 'teacher': 'Giáo viên',
 };
 export const typeLabels: Record<string, string> = {
-    'books': 'tài liệu', 'code': 'Code mẫu', 'videos': 'Video kết quả', 'ppt': 'PowerPoint bài giảng',
+    'books': 'Tài liệu', 'code': 'Code mẫu', 'videos': 'Video kết quả', 'ppt': 'PowerPoint bài giảng',
+    'video_demo': 'Video ứng dụng', 'robotics': 'Robotics'
 };

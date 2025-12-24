@@ -5,7 +5,7 @@ import imgProduct3 from "@/assets/lop5.png";
 import imgProduct4 from "@/assets/combo.jpg";
 import { resources, ResourceItem } from "./resources";
 
-export type ProductType = 'book' | 'video' | 'code' | 'ppt' | 'combo';
+export type ProductType = 'book' | 'video' | 'code' | 'ppt' | 'video_demo' | 'robotics';
 export type GradeLevel = 3 | 4 | 5;
 
 export interface Product {
@@ -30,6 +30,8 @@ const mapType = (resType: string): ProductType => {
         case 'videos': return 'video';
         case 'code': return 'code';
         case 'ppt': return 'ppt';
+        case 'video_demo': return 'video_demo';
+        case 'robotics': return 'robotics';
         default: return 'book';
     }
 };
