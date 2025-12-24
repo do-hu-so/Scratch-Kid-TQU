@@ -60,7 +60,7 @@ const getImage = (grade: number): string => {
 };
 
 // Convert resources to products
-export const products: Product[] = resources.map((res: ResourceItem) => {
+export const products: Product[] = resources.filter(res => res.category !== 'teacher').map((res: ResourceItem) => {
     const grade = parseGrade(res.grade, res.category);
 
     // Logic giả lập giá và rating (vì resource gốc không có)
