@@ -13,6 +13,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Slider } from "@/components/ui/slider";
 import { toast } from "sonner";
 import { Download, Eye, Filter, Search, ShoppingCart, Star } from "lucide-react";
@@ -39,6 +40,33 @@ const AllProducts = () => {
         5: "Lớp 5",
     };
 
+    // --- Helpers from Resources.tsx ---
+    const getEmbedUrl = (url: string) => {
+        if (!url) return '';
+        if (url.includes('docs.google.com') && url.includes('/edit')) {
+            return url.replace(/\/edit.*$/, '/embed?start=false&loop=false&delayms=3000');
+        }
+        if (url.includes('drive.google.com/file/d/') && url.includes('/view')) {
+            return url.replace(/\/view.*$/, '/preview');
+        }
+        if (url.includes('drive.google.com') && !url.includes('preview') && !url.includes('embed')) {
+            if (url.endsWith('/')) return url + 'preview';
+            return url + '/preview';
+        }
+        return url;
+    };
+
+    const getDriveImageSrc = (url: string) => {
+        if (!url) return '';
+        if (url.includes('drive.google.com/file/d/') && url.includes('/view')) {
+            const idMatch = url.match(/\/d\/(.+?)\//);
+            if (idMatch && idMatch[1]) {
+                return `https://drive.google.com/thumbnail?id=${idMatch[1]}&sz=w1000`;
+            }
+        }
+        return url;
+    };
+
     // --- Handlers ---
     const toggleType = (type: ProductType) => {
         setSelectedTypes((prev) =>
@@ -50,10 +78,6 @@ const AllProducts = () => {
         setSelectedGrades((prev) =>
             prev.includes(grade) ? prev.filter((g) => g !== grade) : [...prev, grade]
         );
-    };
-
-    const handlePreview = (url: string) => {
-        window.open(url, "_blank");
     };
 
     const handleDownload = (url: string) => {
@@ -187,79 +211,122 @@ const AllProducts = () => {
 
                         {/* Product Grid */}
                         {filteredProducts.length > 0 ? (
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {filteredProducts.map((product, index) => (
-                                    <motion.div
-                                        key={product.id}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: index * 0.05 }}
-                                        className="group flex flex-col h-full bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
-                                    >
-                                        {/* Thumbnail */}
-                                        <div className="relative aspect-[4/3] bg-slate-100 overflow-hidden">
-                                            <img
-                                                src={product.image}
-                                                alt={product.title}
-                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                            />
-                                            <div className="absolute top-2 right-2 bg-white/90 px-2 py-1 rounded text-xs font-bold shadow-sm">
-                                                {gradeLabels[product.grade]}
+                            <div className="space-y-12">
+                                {(Object.keys(typeLabels) as ProductType[]).map((type) => {
+                                    const groupProducts = filteredProducts.filter(p => p.type.includes(type));
+                                    if (groupProducts.length === 0) return null;
+
+                                    return (
+                                        <div key={type} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                                            <div className="flex items-center gap-3 mb-6">
+                                                <div className="h-8 w-1 bg-primary rounded-full"></div>
+                                                <h2 className="text-2xl font-bold text-slate-800">
+                                                    {typeLabels[type]}
+                                                    <span className="ml-2 text-base font-medium text-slate-400">
+                                                        ({groupProducts.length})
+                                                    </span>
+                                                </h2>
                                             </div>
 
-                                            {/* Overlay Actions */}
-                                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
-                                                <Button
-                                                    variant="secondary"
-                                                    size="icon"
-                                                    className="rounded-full hover:scale-110 transition-transform"
-                                                    onClick={() => handlePreview(product.previewUrl)}
-                                                    title="Xem trước"
-                                                >
-                                                    <Eye className="w-5 h-5" />
-                                                </Button>
-                                            </div>
-                                        </div>
-
-                                        {/* Content */}
-                                        <div className="p-4 flex flex-col flex-grow">
-                                            <div className="text-xs text-primary font-bold mb-1 uppercase tracking-wider">
-                                                {product.type.map(t => typeLabels[t]).join(" + ")}
-                                            </div>
-                                            <h3 className="font-bold text-lg leading-tight mb-2 line-clamp-2" title={product.title}>
-                                                {product.title}
-                                            </h3>
-
-                                            <div className="flex items-center gap-1 mb-4">
-                                                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                                                <span className="font-semibold text-sm">{product.rating}</span>
-                                                <span className="text-xs text-muted-foreground">({product.reviews} đánh giá)</span>
-                                            </div>
-
-                                            <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
-                                                <div>
-                                                    <div className="text-lg font-black text-red-500">
-                                                        {product.price.toLocaleString('vi-VN')}đ
-                                                    </div>
-                                                    {product.originalPrice && (
-                                                        <div className="text-xs text-muted-foreground line-through">
-                                                            {product.originalPrice.toLocaleString('vi-VN')}đ
+                                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                                {groupProducts.map((product, index) => (
+                                                    <motion.div
+                                                        key={`${type}-${product.id}`}
+                                                        initial={{ opacity: 0, y: 20 }}
+                                                        whileInView={{ opacity: 1, y: 0 }}
+                                                        viewport={{ once: true }}
+                                                        transition={{ delay: index * 0.05 }}
+                                                        className="group flex flex-col h-full bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
+                                                    >
+                                                        {/* Thumbnail */}
+                                                        <div className="relative aspect-video bg-white overflow-hidden border-b border-slate-100">
+                                                            <img
+                                                                src={getDriveImageSrc(product.image)}
+                                                                alt={product.title}
+                                                                className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-500"
+                                                            />
+                                                            <div className="absolute top-2 right-2 bg-slate-900/10 px-2 py-1 rounded text-xs font-bold shadow-sm backdrop-blur-sm">
+                                                                {gradeLabels[product.grade]}
+                                                            </div>
                                                         </div>
-                                                    )}
-                                                </div>
-                                                <Button
-                                                    size="sm"
-                                                    variant="outline"
-                                                    className="gap-2 border-primary text-primary hover:bg-primary hover:text-white"
-                                                    onClick={() => handleDownload(product.downloadUrl)}
-                                                >
-                                                    <Download className="w-4 h-4" />
-                                                    Tải về
-                                                </Button>
+
+                                                        {/* Content */}
+                                                        <div className="p-4 flex flex-col flex-grow">
+                                                            <div className="text-xs text-primary font-bold mb-1 uppercase tracking-wider">
+                                                                {product.type.map(t => typeLabels[t]).join(" + ")}
+                                                            </div>
+                                                            <h3 className="font-bold text-lg leading-tight mb-2 line-clamp-2" title={product.title}>
+                                                                {product.title}
+                                                            </h3>
+
+                                                            {product.description && (
+                                                                <p className="text-sm text-slate-500 mb-3 line-clamp-3">
+                                                                    {product.description}
+                                                                </p>
+                                                            )}
+
+                                                            <div className="flex items-center gap-1 mb-4">
+                                                                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                                                                <span className="font-semibold text-sm">{product.rating}</span>
+                                                                <span className="text-xs text-muted-foreground">({product.reviews} đánh giá)</span>
+                                                            </div>
+
+                                                            <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+                                                                <div className="flex-shrink-0">
+                                                                    <div className="text-lg font-black text-red-500">
+                                                                        {product.price.toLocaleString('vi-VN')}đ
+                                                                    </div>
+                                                                    {product.originalPrice && (
+                                                                        <div className="text-xs text-muted-foreground line-through">
+                                                                            {product.originalPrice.toLocaleString('vi-VN')}đ
+                                                                        </div>
+                                                                    )}
+                                                                </div>
+
+                                                                <div className="flex gap-2">
+                                                                    <Dialog>
+                                                                        <DialogTrigger asChild>
+                                                                            <Button
+                                                                                variant="outline"
+                                                                                size="sm"
+                                                                                className="gap-1.5 hover:border-primary hover:text-primary px-3"
+                                                                            >
+                                                                                <Eye className="w-4 h-4" />
+                                                                                <span className="hidden sm:inline">Xem trước</span>
+                                                                            </Button>
+                                                                        </DialogTrigger>
+                                                                        <DialogContent className="max-w-4xl h-[80vh] flex flex-col p-0 overflow-hidden bg-black/95 border-none">
+                                                                            <div className="p-4 flex justify-between items-center text-white bg-white/10 backdrop-blur-sm z-10 absolute w-full top-0 left-0">
+                                                                                <h3 className="font-semibold truncate pr-8">{product.title}</h3>
+                                                                            </div>
+                                                                            <div className="flex-grow w-full h-full pt-14 pb-4 px-4 flex items-center justify-center">
+                                                                                <iframe
+                                                                                    src={getEmbedUrl(product.previewUrl)}
+                                                                                    className="w-full h-full rounded-lg bg-white"
+                                                                                    allow="autoplay"
+                                                                                    title="Preview"
+                                                                                ></iframe>
+                                                                            </div>
+                                                                        </DialogContent>
+                                                                    </Dialog>
+
+                                                                    <Button
+                                                                        size="sm"
+                                                                        className="gap-1.5 bg-primary text-primary-foreground hover:bg-primary/90 px-3"
+                                                                        onClick={() => handleDownload(product.downloadUrl)}
+                                                                    >
+                                                                        <Download className="w-4 h-4" />
+                                                                        <span className="hidden sm:inline">Tải về</span>
+                                                                    </Button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </motion.div>
+                                                ))}
                                             </div>
                                         </div>
-                                    </motion.div>
-                                ))}
+                                    );
+                                })}
                             </div>
                         ) : (
                             <div className="text-center py-20 bg-white rounded-xl border border-dashed border-slate-300">

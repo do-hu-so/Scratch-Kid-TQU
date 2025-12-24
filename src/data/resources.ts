@@ -281,24 +281,24 @@ const DATA = {
     },
     'teacher': {
         books: {
-            '3': Array(1).fill(null).map((_, i) => item(`Giáo trình L3 - Bài ${i + 1}`, THUMB_BOOK3, BOOK_3, LINK_DL, "Khởi động tư duy lập trình")),
-            '4': Array(1).fill(null).map((_, i) => item(`Giáo trình L4 - Bài ${i + 1}`, THUMB_BOOK4, BOOK_4, LINK_DL, "Phát triển kỹ năng lập trình")),
-            '5': Array(1).fill(null).map((_, i) => item(`Giáo trình L5 - Bài ${i + 1}`, THUMB_BOOK5, BOOK_5, LINK_DL, "Dự án STEM ứng dụng")),
+            '3': [],
+            '4': [],
+            '5': [],
         },
         code: {
-            '3': Array(5).fill(null).map((_, i) => item(`Code GV L3 - Bài ${i + 1}`, THUMB_CODE, CODE_3, LINK_DL, "Khởi động tư duy lập trình")),
-            '4': Array(5).fill(null).map((_, i) => item(`Code GV L4 - Bài ${i + 1}`, THUMB_CODE, CODE_4, LINK_DL, "Phát triển kỹ năng lập trình")),
-            '5': Array(5).fill(null).map((_, i) => item(`Code GV L5 - Bài ${i + 1}`, THUMB_CODE, CODE_5, LINK_DL, "Dự án STEM ứng dụng")),
+            '3': [],
+            '4': [],
+            '5': [],
         },
         videos: {
-            '3': Array(5).fill(null).map((_, i) => item(`Video Dạy L3 - Bài ${i + 1}`, THUMB_VID, VIDEO_3, LINK_DL, "Khởi động tư duy lập trình")),
-            '4': Array(5).fill(null).map((_, i) => item(`Video Dạy L4 - Bài ${i + 1}`, THUMB_VID, VIDEO_4, LINK_DL, "Phát triển kỹ năng lập trình")),
-            '5': Array(5).fill(null).map((_, i) => item(`Video Dạy L5 - Bài ${i + 1}`, THUMB_VID, VIDEO_5, LINK_DL, "Dự án STEM ứng dụng")),
+            '3': [],
+            '4': [],
+            '5': [],
         },
         ppt: {
-            '3': Array(15).fill(null).map((_, i) => item(`Slide GV L3 - Bài ${i + 1}`, THUMB_PPT, PPT_3, LINK_DL, "Khởi động tư duy lập trình")),
-            '4': Array(15).fill(null).map((_, i) => item(`Slide GV L4 - Bài ${i + 1}`, THUMB_PPT, PPT_4, LINK_DL, "Phát triển kỹ năng lập trình")),
-            '5': Array(15).fill(null).map((_, i) => item(`Slide GV L5 - Bài ${i + 1}`, THUMB_PPT, PPT_5, LINK_DL, "Dự án STEM ứng dụng")),
+            '3': [],
+            '4': [],
+            '5': [],
         }
     }
 };
