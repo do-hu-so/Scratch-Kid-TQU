@@ -10,7 +10,7 @@ const Header = () => {
     { label: "Trang chủ", href: "/", icon: Book },
     { label: "Sản phẩm", href: "/tat-ca-san-pham", icon: GraduationCap },
     { label: "Giới thiệu", href: "/gioi-thieu", icon: GraduationCap },
-    { label: "Liên hệ", href: "#contact", icon: MessageCircle },
+    { label: "Liên hệ", href: "/lien-he", icon: MessageCircle },
   ];
 
   return (
