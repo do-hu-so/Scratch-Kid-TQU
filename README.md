@@ -1,7 +1,7 @@
 # Scratch Stars Academy
 
 Nền tảng giáo dục lập trình Scratch cho trẻ em và giáo viên.
-
+DEMO WEB: https://scratch-kid-tqu.vercel.app/
 ## Công nghệ sử dụng
 
 -   **Frontend:** React + Vite + TypeScript + Tailwind CSS + shadcn/ui
